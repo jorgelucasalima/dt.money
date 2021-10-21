@@ -15,7 +15,7 @@ interface NewTransactionModalProps {
 
 export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModalProps){
 
-  const [type, setType] = useState('deposito')
+  const [type, setType] = useState('deposit')
   const [title, setTitle] = useState('')
   const [value, setValue] = useState(0)
   const [category, setCategory] = useState('')
