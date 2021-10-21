@@ -17,8 +17,8 @@ export function Transacoes() {
   const [transactions, setTransactions] = useState<Transaction[]>([])
   
   useEffect(() => {
-    api.get('transactions')
-    .then(response => console.log(response.data))
+    api.get<{transactions: Transaction[]}>('transactions')
+    .then(response => setTransactions(response.data.transactions))
   }, [])
 
 
