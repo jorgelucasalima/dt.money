@@ -4,13 +4,12 @@ import close from '../../assets/close.svg'
 import {Container,TransactionTypeContainer, RadioBox} from './styles'
 import income from '../../assets/income.svg'
 import outcome from '../../assets/outcome.svg'
-import { api } from '../../services/api';
 import { TransactionsContext } from '../../TransactionsContext';
 
 
 interface NewTransactionModalProps {
   isOpen: boolean;
-  onRequestClose: () => void
+  onRequestClose: () => void;
 }
 
 
@@ -25,15 +24,22 @@ export function NewTransactionModal({isOpen, onRequestClose}: NewTransactionModa
   const [amount, setAmount] = useState(0)
   const [category, setCategory] = useState('')
 
-  function handleCreateNewTransaction(e: FormEvent) {
+  async function handleCreateNewTransaction(e: FormEvent) {
     e.preventDefault()
 
-    createTransaction({
+    await createTransaction({
       title,
       amount,
-      category,
       type,
+      category,
     })
+
+    setTitle('')
+    setAmount(0)
+    setType('deposit')
+    setCategory('')
+
+    onRequestClose()
 
   }
 
